@@ -1,0 +1,28 @@
+{
+  "name": "smart-meter-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "reseed": "rm -f data/meter.db data/meter.db-wal data/meter.db-shm && echo 'Database cleared - it will be re-seeded on next start'"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0",
+    "geist": "^1.5.1",
+    "lucide-react": "^0.468.0",
+    "next": "^15.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.8.0"
+  }
+}

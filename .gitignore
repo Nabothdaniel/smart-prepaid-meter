@@ -1,0 +1,7 @@
+node_modules
+.next
+data/*-wal
+data/*-shm
+next-env.d.ts
+tsconfig.tsbuildinfo
+.env*

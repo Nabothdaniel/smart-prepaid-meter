@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* Brand: "Grid Ink" — deep blue-black instrument panel, one volt-lime accent,
+   and a distinct hue per measurement so values are readable at a glance. */
+:root {
+  --bg: #f3f5f9;
+  --surface: #ffffff;
+  --surface-2: #eaeef5;
+  --line: #d5dce8;
+  --fg: #0e1828;
+  --muted: #53627a;
+  --accent: #3f6f0a;
+  --accent-fg: #ffffff;
+  --credit: #047857;
+  --power: #b45309;
+  --voltage: #0369a1;
+  --current: #c2410c;
+  --energy: #6d28d9;
+  --danger: #b91c1c;
+  --warn: #a16207;
+  --lcd-bg: #b9d38b;
+  --lcd-fg: #1f2e0b;
+  --radius: 1rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #080c12;
+    --surface: #0f1620;
+    --surface-2: #162130;
+    --line: #223049;
+    --fg: #e8eef7;
+    --muted: #91a1ba;
+    --accent: #c8f24b;
+    --accent-fg: #0b1204;
+    --credit: #34d399;
+    --power: #fbbf24;
+    --voltage: #38bdf8;
+    --current: #fb923c;
+    --energy: #a78bfa;
+    --danger: #f87171;
+    --warn: #facc15;
+    --lcd-bg: #9bb86a;
+    --lcd-fg: #17220a;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-credit: var(--credit);
+  --color-power: var(--power);
+  --color-voltage: var(--voltage);
+  --color-current: var(--current);
+  --color-energy: var(--energy);
+  --color-danger: var(--danger);
+  --color-warn: var(--warn);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html { color-scheme: light dark; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.5rem; }
+
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--credit) 60%, transparent); } 100% { box-shadow: 0 0 0 8px transparent; } }
+@keyframes shimmer { 0% { opacity: .5; } 50% { opacity: 1; } 100% { opacity: .5; } }
+@media (prefers-reduced-motion: no-preference) {
+  .live-dot { animation: pulse-ring 1.8s ease-out infinite; }
+  .skeleton { animation: shimmer 1.6s ease-in-out infinite; }
+  .bar-fill { transition: width 600ms cubic-bezier(.22,1,.36,1), background-color 300ms; }
+}
+button, a { touch-action: manipulation; }
