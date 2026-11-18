@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     return Response.json({ ok: false, message: "Wrong email or password" }, { status: 401 });
   }
   attempts.delete(key);
-  const token = createSession(u.id);
+  const token = createSession({ id: u.id, email: u.email, name: u.name, role: u.role });
   (await cookies()).set(COOKIE, token, {
     httpOnly: true, sameSite: "lax", path: "/", maxAge: SESSION_MS / 1000,
     secure: req.headers.get("x-forwarded-proto") === "https",

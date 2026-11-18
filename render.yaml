@@ -1,0 +1,14 @@
+# Render Blueprint: one always-on Node process, so the meter keeps recording and
+# admin actions are shared with the customer view. Free plan works (data resets on redeploy/idle restart).
+services:
+  - type: web
+    name: smart-prepaid-meter
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: NODE_VERSION
+        value: 22

@@ -36,3 +36,9 @@ Sign in at `/login`. Demo accounts (one-click on the login page; set `DEMO_LOGIN
 **Admin** (`/admin`): everything the customer sees, plus disconnect/restore the supply, reset protection trips, change tariff and low-credit alert, add or remove credit, switch customer permissions, send a notice, run fault simulations and speed, export readings CSV, and see the activity log of every user. All admin and customer actions are written to the `audit` table. 24 h of demo log entries are seeded for both roles.
 
 Passwords are stored as scrypt hashes and sessions are random tokens in an httpOnly cookie. **Change the demo passwords before real use.**
+
+## Hosting notes
+
+- **Sessions** are signed cookies (no database lookup), so login works on serverless hosts. Set `SESSION_SECRET` to a long random string in production (a demo default is used if unset).
+- **Vercel / serverless:** every function gets its own temporary copy of the database, so admin actions, credit changes and new readings are *not* shared between pages and reset on cold start. Good enough to show the UI only.
+- **Fully working (recommended):** deploy to Render using `render.yaml` (free plan, one always-on process, so recording and admin-to-customer control work). Add a persistent disk and `DATA_DIR` to keep data across restarts.
